@@ -750,33 +750,3 @@ public class AccountActivity extends Activity {
         
         settings.requery();
     }
-
-    void confirmTermsOfUse(BrandingResources res, DialogInterface.OnClickListener accept) {
-        SpannableString message = new SpannableString(
-                res.getString(BrandingResourceIDs.STRING_TOU_MESSAGE));
-        Linkify.addLinks(message, Linkify.ALL);
-
-        new AlertDialog.Builder(this).setIcon(android.R.drawable.ic_dialog_alert)
-                .setTitle(res.getString(BrandingResourceIDs.STRING_TOU_TITLE)).setMessage(message)
-                .setPositiveButton(res.getString(BrandingResourceIDs.STRING_TOU_DECLINE), null)
-                .setNegativeButton(res.getString(BrandingResourceIDs.STRING_TOU_ACCEPT), accept)
-                .show();
-    }
-
-    boolean shouldShowTermOfUse(BrandingResources res) {
-        return !TextUtils.isEmpty(res.getString(BrandingResourceIDs.STRING_TOU_MESSAGE));
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        mAccountUri = savedInstanceState.getParcelable(ACCOUNT_URI_KEY);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putParcelable(ACCOUNT_URI_KEY, mAccountUri);
-    }
-
-   
